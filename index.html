@@ -356,12 +356,34 @@
         }
 
         .form-group input, .form-group select {
-            padding: 0.9rem 1.1rem;
-            border: 1px solid #DDD;
-            border-radius: 12px;
-            font-size: 1rem;
-            background: #FFFFFF;
-        }
+    padding: 0.9rem 1.1rem;
+    border: 1.5px solid #E2D7CD;
+    border-radius: 12px;
+    font-size: 0.98rem;
+    color: var(--text-main);
+    background-color: #FFFFFF;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+/* Stilizovanje padajućeg menija sa prilagođenom strelicom */
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%236E4B3C' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.3rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(197, 155, 113, 0.2);
+}
 
         .btn-whatsapp {
             background: #25D366;
@@ -565,41 +587,92 @@
         <p>&copy; 2026 Massage Andja Novi Sad. Sva prava zadržana.</p>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navOverlay').classList.toggle('active');
-            document.getElementById('backdrop').classList.toggle('active');
+<script>
+    function toggleMenu() {
+        document.getElementById('navOverlay').classList.toggle('active');
+        document.getElementById('backdrop').classList.toggle('active');
+    }
+
+    // Funkcija koja puni opcije za vreme i onemogućava prošle sate za današnji dan
+    function updateAvailableTimes() {
+        const dateInput = document.getElementById('date');
+        const timeSelect = document.getElementById('time');
+        const selectedDate = dateInput.value;
+        
+        const now = new Date();
+        const todayStr = now.toISOString().split('T')[0];
+        const currentHour = now.getHours();
+
+        // Sačuvaj trenutno izabranu vrednost ako postoji
+        const previousValue = timeSelect.value;
+        timeSelect.innerHTML = '';
+
+        // Generisanje sati od 09:00 do 21:00 (bez teksta u zagradi)
+        for (let hour = 9; hour <= 21; hour++) {
+            ['00', '30'].forEach(minute => {
+                // Nemoj dodavati 21:30 jer je radno vreme do 21:00h
+                if (hour === 21 && minute === '30') return;
+
+                const timeString = `${hour < 10 ? '0' + hour : hour}:${minute}`;
+                
+                // Ako je izabran današnji datum, preskoči sate koji su prošli
+                if (selectedDate === todayStr && hour <= currentHour) {
+                    return;
+                }
+
+                const option = document.createElement('option');
+                option.value = timeString;
+                option.textContent = `${timeString} h`;
+                timeSelect.appendChild(option);
+            });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateInput = document.getElementById('date');
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.setAttribute('min', today);
-            dateInput.value = today;
-        });
+        // Ako nema slobodnih termina za danas (npr. prođe 21h)
+        if (timeSelect.options.length === 0) {
+            const option = document.createElement('option');
+            option.value = "";
+            option.textContent = "Nema slobodnih termina za danas";
+            timeSelect.appendChild(option);
+        } else if (previousValue) {
+            timeSelect.value = previousValue;
+        }
+    }
 
-        function sendToWhatsApp(event) {
-            event.preventDefault();
-            const phone = "381611082003";
-            const service = document.getElementById('service').value;
-            const rawDate = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        
+        dateInput.setAttribute('min', today);
+        dateInput.value = today;
 
-            let formattedDate = rawDate;
-            if(rawDate) {
-                const parts = rawDate.split('-');
-                if(parts.length === 3) formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}.`;
-            }
+        // Inicijalno osvežavanje satnice
+        updateAvailableTimes();
 
-            const msg = `Zdravo Anđo, želeo/lela bih da zakažem masažu:\n\n• Usluga: ${service}\n• Datum: ${formattedDate}\n• Vreme: ${time}h\n\nDa li je ovaj termin slobodan?`;
-            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
+        // Osveži dostupne sate kada klijent promeni datum
+        dateInput.addEventListener('change', updateAvailableTimes);
+    });
+
+    function sendToWhatsApp(event) {
+        event.preventDefault();
+        const phone = "381611082003";
+        const service = document.getElementById('service').value;
+        const rawDate = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        if (!time) {
+            alert("Molimo vas izaberite važeći datum i vreme.");
+            return;
         }
 
-        function orderVoucher() {
-            const phone = "381611082003";
-            const msg = `Zdravo Anđo, želim da kupim POKLON VAUČER za masažu.\n\nMolim te pošalji mi podatke za uplatu na račun kako bismo dogovorili detalje!`;
-            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
+        let formattedDate = rawDate;
+        if (rawDate) {
+            const parts = rawDate.split('-');
+            if (parts.length === 3) formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}.`;
         }
-    </script>
+
+        const msg = `Zdravo Anđa, želeo/lela bih da zakažem masažu:\n\n• Usluga: ${service}\n• Datum: ${formattedDate}\n• Vreme: ${time}h\n\nDa li je ovaj termin slobodan?`;
+        window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
+    }
+</script>
 </body>
 </html>
