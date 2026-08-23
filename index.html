@@ -493,21 +493,21 @@
                 <h3>Relax leđa i ramena</h3>
                 <p>Ublažava ukočenost i napetost u vratu i leđima uzrokovanu sedenjem i stresom.</p>
                 <div class="service-price">1.400 RSD / 30 min</div>
-                <a href="#zakazivanje" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem;">Zakaži tretman</a>
+                <button onclick="selectServiceAndScroll(0)" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem; border: none; cursor: pointer;">Zakaži tretman</button>
             </div>
 
             <div class="service-card" style="border: 2px solid var(--accent);">
                 <h3>Anti-stres masaža</h3>
                 <p>Ciljani tretman glave, vrata i leđa koji brzo oslobađa od nakupljenog pritiska.</p>
                 <div class="service-price">1.800 RSD / 45 min</div>
-                <a href="#zakazivanje" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem;">Zakaži tretman</a>
+                <button onclick="selectServiceAndScroll(1)" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem; border: none; cursor: pointer;">Zakaži tretman</button>
             </div>
 
             <div class="service-card">
                 <h3>Relax celog tela</h3>
                 <p>Potpuna relaksacija svih mišićnih grupa od glave do pete uz umirujuća ulja.</p>
                 <div class="service-price">2.200 RSD / 60 min</div>
-                <a href="#zakazivanje" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem;">Zakaži tretman</a>
+                <button onclick="selectServiceAndScroll(2)" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem; border: none; cursor: pointer;">Zakaži tretman</button>
             </div>
         </div>
     </section>
@@ -588,6 +588,21 @@
     </footer>
 
 <script>
+    function selectServiceAndScroll(index) {
+    const serviceSelect = document.getElementById('service');
+    
+    // Ako indeks postoji u padajućem meniju, selektuj ga
+    if (serviceSelect && serviceSelect.options[index]) {
+        serviceSelect.selectedIndex = index;
+    }
+
+    // Glatko poskoči/skroluj do sekcije za zakazivanje
+    const bookingSection = document.getElementById('zakazivanje');
+    if (bookingSection) {
+        bookingSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+    
     function toggleMenu() {
         document.getElementById('navOverlay').classList.toggle('active');
         document.getElementById('backdrop').classList.toggle('active');
