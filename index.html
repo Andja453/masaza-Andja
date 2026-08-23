@@ -6,171 +6,491 @@
     <title>Masaža Anđa Novi Sad | Relax i Anti-Stres Masaže Detelinara</title>
     <meta name="description" content="Profesionalne relax i anti-stres masaže na Detelinari u Novom Sadu. Zakažite svoj termin ili poručite poklon vaučer.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #8A6D63;
-            --primary-dark: #6E534A;
-            --accent: #D4A373;
-            --bg-light: #FAFAFA;
+            --primary: #6E4B3C;
+            --primary-dark: #4A3228;
+            --accent: #C59B71;
+            --bg-light: #FDFBF7;
             --card-bg: #FFFFFF;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --soft-rose: #F3E9E5;
+            --text-main: #2C221E;
+            --text-muted: #665A55;
+            --soft-rose: #F4EBE1;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-        /* Top Nav */
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Top Navigation Header */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(8px);
-            padding: 0.8rem 6%;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05); z-index: 1000;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            z-index: 1000;
         }
 
-        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-img { height: 45px; width: 45px; object-fit: cover; border-radius: 50%; border: 1px solid var(--accent); }
-        .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--primary-dark); }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-        /* Hamburger Icon Button */
+        /* 3 Grey Lines Button on the Left */
         .menu-btn {
-            background: none; border: none; font-size: 1.6rem; color: #777777; cursor: pointer; padding: 5px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #777777;
+            cursor: pointer;
+            padding: 4px;
             transition: color 0.3s;
         }
-        .menu-btn:hover { color: var(--primary-dark); }
 
-        /* Slide-over Menu Overlay */
+        .menu-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: 42px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+        }
+
+        /* Restored Cursive Font for Logo */
+        .logo-text {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.3rem;
+            color: var(--primary-dark);
+            line-height: 1;
+        }
+
+        /* Top Right Navigation Links */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Side Overlay Menu (Left side) */
         .nav-overlay {
-            position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
-            background: #FFFFFF; box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-            z-index: 2000; padding: 2.5rem 1.5rem; transition: right 0.4s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 290px;
+            height: 100vh;
+            background: #FFFFFF;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+            z-index: 2000;
+            padding: 2.5rem 1.5rem;
+            transition: left 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .nav-overlay.active { right: 0; }
-        .close-btn { background: none; border: none; font-size: 1.8rem; color: #888; align-self: flex-end; cursor: pointer; }
-        .overlay-links { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
-        .overlay-links a {
-            text-decoration: none; color: var(--text-main); font-size: 1.1rem; font-weight: 500;
-            display: flex; align-items: center; gap: 12px; transition: color 0.3s;
-        }
-        .overlay-links a:hover { color: var(--primary); }
-        .menu-backdrop {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.4); z-index: 1500; display: none;
-        }
-        .menu-backdrop.active { display: block; }
 
-        /* Hero */
+        .nav-overlay.active {
+            left: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #888;
+            align-self: flex-end;
+            cursor: pointer;
+        }
+
+        .overlay-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #EEE;
+            padding-bottom: 5px;
+        }
+
+        .overlay-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .overlay-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            transition: all 0.3s;
+        }
+
+        .overlay-links a:hover {
+            background: var(--soft-rose);
+            color: var(--primary-dark);
+        }
+
+        .menu-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.4);
+            z-index: 1500;
+            display: none;
+        }
+
+        .menu-backdrop.active {
+            display: block;
+        }
+
+        /* Hero Section */
         .hero {
             min-height: 85vh;
-            background: linear-gradient(rgba(44, 34, 30, 0.55), rgba(44, 34, 30, 0.55)), 
+            background: linear-gradient(rgba(44, 30, 24, 0.65), rgba(44, 30, 24, 0.65)), 
                         url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            color: #FFFFFF; padding: 6rem 1.5rem 3rem 1.5rem; margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 6rem 1.5rem 3rem 1.5rem;
+            margin-top: 60px;
         }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 700; margin-bottom: 1rem; }
-        .hero p { font-size: 1.15rem; max-width: 650px; margin-bottom: 2rem; }
+
+        .hero h1 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: #F8ECE4;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
 
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--primary); color: #FFFFFF; padding: 0.9rem 2.2rem; border-radius: 50px;
-            text-decoration: none; font-weight: 500; transition: all 0.3s ease; border: none; cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        .btn:hover { background: var(--primary-dark); }
 
-        section { padding: 4.5rem 8%; }
-        .section-title { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--primary-dark); }
-        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 3rem; }
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 4.5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.2rem;
+            color: var(--primary-dark);
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img-box img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2.2rem 1.8rem;
+            border-radius: 20px;
+            border: 1px solid #EFEAE6;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 1.2rem 0;
+        }
 
         /* Voucher Section */
         .voucher-card {
-            background: linear-gradient(135deg, #FFF6F3 0%, #F5E8E2 100%);
-            border: 2px dashed var(--accent); border-radius: 20px; padding: 3rem 2rem; text-align: center;
-            max-width: 700px; margin: 0 auto; box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            background: linear-gradient(135deg, #FAF4EF 0%, #EDE1D7 100%);
+            border: 2px dashed var(--accent);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .voucher-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
 
-        /* Booking & Forms */
-        .booking-section { background: var(--soft-rose); border-radius: 30px; padding: 3.5rem 5%; max-width: 750px; margin: 0 auto; }
-        .booking-form { display: flex; flex-direction: column; gap: 1.2rem; }
-        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-        .form-group label { font-weight: 500; color: var(--primary-dark); }
-        .form-group input, .form-group select { padding: 0.9rem 1.1rem; border: 1px solid #DDD; border-radius: 12px; font-size: 1rem; }
-        .btn-whatsapp { background: #25D366; color: #FFFFFF; font-size: 1.05rem; padding: 1rem; margin-top: 0.5rem; width: 100%; }
+        .voucher-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
 
-        /* Services Grid */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .service-card { background: var(--card-bg); padding: 2rem; border-radius: 20px; border: 1px solid #F0F0F0; text-align: center; }
-        .service-price { font-size: 1.5rem; font-weight: 600; color: var(--primary-dark); margin: 1rem 0; }
+        /* Booking Form */
+        .booking-section {
+            background: var(--soft-rose);
+            border-radius: 30px;
+            padding: 3.5rem 5%;
+            max-width: 750px;
+            margin: 0 auto;
+        }
 
-        footer { background: #2C221E; color: #E0E0E0; text-align: center; padding: 2.5rem 1rem; margin-top: 4rem; }
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.9rem 1.1rem;
+            border: 1px solid #DDD;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #FFFFFF;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #FFFFFF;
+            font-size: 1.05rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1EBE5D;
+        }
+
+        footer {
+            background: #2C221E;
+            color: #E0E0E0;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
+    <!-- Top Navigation Header -->
     <nav>
-        <a href="#" class="logo-container">
-            <img src="logo.jpg" alt="Masaža Anđa Logo" class="logo-img" onerror="this.style.display='none'">
-            <span class="logo-text">Masaža Anđa</span>
-        </a>
-        <!-- 3 Grey Lines Button -->
-        <button class="menu-btn" onclick="toggleMenu()" aria-label="Meni">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+        <div class="nav-left">
+            <!-- 3 Grey Lines Button -->
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Meni">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a href="#" class="logo-container">
+                <img src="logo.jpg" alt="Masaža Anđa Logo" class="logo-img" onerror="this.style.display='none'">
+                <span class="logo-text">Massage Andja</span>
+            </a>
+        </div>
+
+        <!-- Top Right Main Section Links -->
+        <ul class="nav-links">
+            <li><a href="#o-meni">O meni</a></li>
+            <li><a href="#usluge">Usluge i Cene</a></li>
+            <li><a href="#zakazivanje">Zakazivanje</a></li>
+            <li><a href="#lokacija">Lokacija</a></li>
+        </ul>
     </nav>
 
-    <!-- Side Menu Overlay -->
+    <!-- Side Overlay Menu (Left Side Trigger) -->
     <div class="menu-backdrop" id="backdrop" onclick="toggleMenu()"></div>
     <div class="nav-overlay" id="navOverlay">
         <div>
             <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <div class="overlay-title">Posebne Opcije</div>
             <ul class="overlay-links">
-                <li><a href="index.html" onclick="toggleMenu()"><i class="fa-solid fa-house"></i> Početna</a></li>
-                <li><a href="#usluge" onclick="toggleMenu()"><i class="fa-solid fa-spa"></i> Usluge i Cene</a></li>
-                <li><a href="saveti.html"><i class="fa-solid fa-lightbulb"></i> Kratki saveti za klijente</a></li>
-                <li><a href="#vauceri" onclick="toggleMenu()"><i class="fa-solid fa-gift"></i> Poklon vaučeri</a></li>
-                <li><a href="#zakazivanje" onclick="toggleMenu()"><i class="fa-solid fa-calendar-check"></i> Zakazivanje</a></li>
-                <li><a href="#lokacija" onclick="toggleMenu()"><i class="fa-solid fa-location-dot"></i> Lokacija</a></li>
+                <li>
+                    <a href="saveti.html">
+                        <i class="fa-solid fa-lightbulb" style="color: var(--accent);"></i> Kratki saveti za klijente
+                    </a>
+                </li>
+                <li>
+                    <a href="#vauceri" onclick="toggleMenu()">
+                        <i class="fa-solid fa-gift" style="color: var(--accent);"></i> Poklon vaučeri
+                    </a>
+                </li>
             </ul>
         </div>
         <div style="font-size: 0.85rem; color: #888; text-align: center;">
-            Masaža Anđa • Detelinara
+            Massage Andja • Detelinara
         </div>
     </div>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <header class="hero">
-        <h1>Oaza mira i opuštanja na Detelinari</h1>
-        <p>Oslobodite se stresa i napetosti u leđima uz masaže prilagođene vašem telu.</p>
-        <a href="#zakazivanje" class="btn"><i class="fa-brands fa-whatsapp"></i> Zakažite termin</a>
+        <h1>Massage Andja</h1>
+        <p>Vaša oaza mira i opuštanja na Detelinari. Priuštite sebi relaksaciju i oslobađanje od svakodnevnog stresa.</p>
+        <a href="#zakazivanje" class="btn"><i class="fa-brands fa-whatsapp"></i> Zakažite svoj termin</a>
     </header>
 
-    <!-- Usluge -->
+    <!-- O Meni Sekcija -->
+    <section id="o-meni">
+        <h2 class="section-title">O Terapeutu</h2>
+        <p class="section-subtitle">Stručnost i posvećenost vašem dobrom osećaju</p>
+        
+        <div class="about-grid">
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Masažni ambijent">
+            </div>
+            <div class="about-text">
+                <h3>Zdravo, ja sam Anđa</h3>
+                <p>Moja posvećenost radu sa telom potiče iz mog poziva medicinske sestre. Razumevanje potreba organizma navelo me je da se usmerim ka relaksacionim i terapeutskim masažama.</p>
+                <p>Redovno pohađam stručne kurseve i svakodnevno se usavršavam. Tretmani se izvode u prijatnom i čistom kućnom ambijentu prilagođenom vašem potpunom odmoru.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usluge i Cene Sekcija -->
     <section id="usluge">
         <h2 class="section-title">Usluge i Cene</h2>
         <p class="section-subtitle">Pregled dostupnih relax tretmana</p>
+
         <div class="services-grid">
             <div class="service-card">
                 <h3>Relax leđa i ramena</h3>
-                <p>Ublažava ukočenost i napetost u vratu i leđima.</p>
+                <p>Ublažava ukočenost i napetost u vratu i leđima uzrokovanu sedenjem i stresom.</p>
                 <div class="service-price">1.400 RSD / 30 min</div>
+                <a href="#zakazivanje" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem;">Zakaži tretman</a>
             </div>
+
             <div class="service-card" style="border: 2px solid var(--accent);">
                 <h3>Anti-stres masaža</h3>
-                <p>Ciljani tretman glave, vrata i leđa za brzi oporavak.</p>
+                <p>Ciljani tretman glave, vrata i leđa koji brzo oslobađa od nakupljenog pritiska.</p>
                 <div class="service-price">1.800 RSD / 45 min</div>
+                <a href="#zakazivanje" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem;">Zakaži tretman</a>
             </div>
+
             <div class="service-card">
                 <h3>Relax celog tela</h3>
-                <p>Potpuna relaksacija svih mišićnih grupa od glave do pete.</p>
+                <p>Potpuna relaksacija svih mišićnih grupa od glave do pete uz umirujuća ulja.</p>
                 <div class="service-price">2.200 RSD / 60 min</div>
+                <a href="#zakazivanje" class="btn" style="width: 100%; font-size: 0.9rem; padding: 0.7rem;">Zakaži tretman</a>
             </div>
         </div>
     </section>
@@ -178,12 +498,12 @@
     <!-- Poklon Vaučeri Sekcija -->
     <section id="vauceri">
         <h2 class="section-title">Poklon Vaučeri</h2>
-        <p class="section-subtitle">Obradujte dragu osobu savršenim poklonom za opuštanje</p>
+        <p class="section-subtitle">Obradujte dragu osobu savršenim poklonom</p>
         
         <div class="voucher-card">
             <i class="fa-solid fa-gift"></i>
             <h3>Poklonite masažu voljenima</h3>
-            <p style="margin: 1rem 0; color: #555;">Kupovina se vrši u par klikova: izaberite tretman, pošaljite upit na WhatsApp, a nakon uplate na račun dobijate digitalni vaučer spremna za štampu ili slanje!</p>
+            <p style="margin: 1rem 0; color: #555;">Kupovina se vrši u par klikova: pošaljite upit na WhatsApp, izvršite uplatu na račun, i dobijate digitalni vaučer u PDF formatu spreman za slanje ili štampu!</p>
             
             <button onclick="orderVoucher()" class="btn btn-whatsapp" style="max-width: 350px; margin: 0 auto;">
                 <i class="fa-brands fa-whatsapp"></i> Poruči Vaučer preko WhatsApp-a
@@ -191,11 +511,11 @@
         </div>
     </section>
 
-    <!-- Zakazivanje -->
+    <!-- Zakazivanje Sekcija -->
     <section id="zakazivanje">
         <div class="booking-section">
             <h2 class="section-title">Zakažite Termin</h2>
-            <p class="section-subtitle" style="margin-bottom: 2rem;">Izaberite datum i vreme (09:00 - 21:00h):</p>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">Izaberite tretman, datum i vreme (09:00 - 21:00h):</p>
 
             <form class="booking-form" onsubmit="sendToWhatsApp(event)">
                 <div class="form-group">
@@ -206,12 +526,14 @@
                         <option value="Relax celog tela (60 min - 2.200 RSD)">Relax celog tela (60 min - 2.200 RSD)</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="date">Datum:</label>
                     <input type="date" id="date" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="time">Vreme:</label>
+                    <label for="time">Vreme (raspon na 30 min):</label>
                     <select id="time" required>
                         <option value="09:00">09:00 h</option>
                         <option value="09:30">09:30 h</option>
@@ -240,26 +562,28 @@
                         <option value="21:00">21:00 h</option>
                     </select>
                 </div>
+
                 <button type="submit" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Pošalji na WhatsApp
+                    <i class="fa-brands fa-whatsapp"></i> Pošalji upit na WhatsApp
                 </button>
             </form>
         </div>
     </section>
 
-    <!-- Lokacija -->
+    <!-- Lokacija Sekcija -->
     <section id="lokacija">
         <h2 class="section-title">Lokacija</h2>
-        <p style="text-align: center; margin-bottom: 1rem;">Teodora Kračuna 6, Detelinara, Novi Sad (Radno vreme: 09:00 - 21:00h)</p>
-        <div style="width: 100%; height: 350px; border-radius: 20px; overflow: hidden;">
+        <p style="text-align: center; margin-bottom: 1.5rem;">Teodora Kračuna 6, Detelinara, Novi Sad (Radno vreme: 09:00 - 21:00h svakog dana)</p>
+        <div style="width: 100%; height: 360px; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2808.312984920231!2d19.814421!3d45.261231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b1037320a4d81%3A0x62a5cfbc935b0e5c!2sTeodora%20Kra%C4%8Duna%206%2C%20Novi%20Sad!5e0!3m2!1ssr!2srs!4v1700000000000!5m2!1ssr!2srs" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Masaža Anđa Novi Sad.</p>
+        <p>&copy; 2026 Massage Andja Novi Sad. Sva prava zadržana.</p>
     </footer>
 
+    <!-- JavaScript Scripting -->
     <script>
         function toggleMenu() {
             document.getElementById('navOverlay').classList.toggle('active');
@@ -286,7 +610,7 @@
                 if(parts.length === 3) formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}.`;
             }
 
-            const msg = `Zdravo Anđa, želeo/lela bih da zakažem masažu:\n\n• Usluga: ${service}\n• Datum: ${formattedDate}\n• Vreme: ${time}h\n\nDa li je termin slobodan?`;
+            const msg = `Zdravo Anđa, želeo/lela bih da zakažem masažu:\n\n• Usluga: ${service}\n• Datum: ${formattedDate}\n• Vreme: ${time}h\n\nDa li je ovaj termin slobodan?`;
             window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
         }
 
