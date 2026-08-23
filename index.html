@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masaža Anđa Novi Sad | Detelinara | Relax i Anti-stres Masaže</title>
+    <meta name="description" content="Profesionalne relax i anti-stres masaže na Detelinari u Novom Sadu. Zakažite svoj termin za opuštanje kod sertifikovane masažerke.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #7A9A95;
+            --primary-dark: #5B7B76;
+            --bg-light: #F9F8F6;
+            --text-dark: #2C3E35;
+            --accent: #E2B1B1;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Sections General */
+        section {
+            padding: 4rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+            margin: 0.5rem auto 0;
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Services & Pricing */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        /* Booking Section */
+        .booking-container {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-whatsapp:hover { background: #1EBE5D; }
+        .btn-phone { background: #3498db; color: white; }
+        .btn-phone:hover { background: #2980b9; }
+
+        /* Location Section */
+        .location-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Masaža Anđa</a>
+        <ul class="nav-links">
+            <li><a href="#o-meni">O meni</a></li>
+            <li><a href="#usluge">Usluge i Cene</a></li>
+            <li><a href="#zakazivanje">Zakazivanje</a></li>
+            <li><a href="#lokacija">Lokacija</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Vaša oaza mira na Detelinari</h1>
+        <p>Smanjite stres, oslobodite se napetosti u mišićima i priuštite sebi trenutke čistog opuštanja.</p>
+        <a href="#zakazivanje" class="btn">Zakažite Termin</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="o-meni">
+        <h2 class="section-title">O Terapeutu</h2>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Masaža ambijent">
+            </div>
+            <div>
+                <h3>Zdravo, ja sam Anđa</h3>
+                <br>
+                <p>Moja strast prema telu i zdravlju potiče iz mog osnovnog poziva medicinske sestre. Kroz stručne kurseve masaže i svakodnevno usavršavanje tehnika, posvećena sam pružanju tretmana koji pospešuju opuštanje i oslobađaju od svakodnevnog stresa.</p>
+                <br>
+                <p>Tretmani se izvode u prijatnom, čistom i tihom kućnom ambijentu prilagođenom isključivo vašem odmoru.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="usluge">
+        <h2 class="section-title">Usluge i Cene</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-spa"></i>
+                <h3>Relax leđa i ramena</h3>
+                <p>Fokusiran tretman na ublažavanje napetosti u vratnom, ramenom i leđnom delu.</p>
+                <div class="price">1.400 RSD / 30 min</div>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-brain"></i>
+                <h3>Anti-stres masaža</h3>
+                <p>Ciljana masaža glave, vrata i leđa koja trenutno oslobađa od stresa i glavobolje.</p>
+                <div class="price">1.800 RSD / 45 min</div>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <h3>Relax celog tela</h3>
+                <p>Kompletna relaksacija mišića od glave do pete uz umirujuća ulja i ambijent.</p>
+                <div class="price">2.200 RSD / 60 min</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="zakazivanje">
+        <h2 class="section-title">Zakazivanje Termina</h2>
+        <div class="booking-container">
+            <p style="text-align: center; margin-bottom: 1.5rem;">Izaberite željeni termin ispod i poslati poruku direktno na WhatsApp radi potvrde:</p>
+            
+            <form class="booking-form" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label for="service">Izaberite masažu:</label>
+                    <select id="service" required>
+                        <option value="Relax leđa i ramena (30 min)">Relax leđa i ramena (30 min)</option>
+                        <option value="Anti-stres masaža (45 min)">Anti-stres masaža (45 min)</option>
+                        <option value="Relax celog tela (60 min)">Relax celog tela (60 min)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Željeni datum:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Željeno vreme (Radno vreme 08:00 - 21:00):</label>
+                    <input type="time" id="time" min="08:00" max="21:00" required>
+                </div>
+                <button type="submit" class="btn btn-whatsapp" style="width: 100%; border-radius: 8px; font-size: 1.1rem;">
+                    <i class="fa-brands fa-whatsapp"></i> Pošalji upit na WhatsApp
+                </button>
+            </form>
+
+            <div class="contact-buttons">
+                <a href="tel:0611082003" class="btn btn-phone"><i class="fa-solid fa-phone"></i> Pozovite 061 1082 003</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="lokacija">
+        <h2 class="section-title">Lokacija</h2>
+        <div class="location-info">
+            <p><strong>Adresa:</strong> Teodora Kračuna 6, Detelinara, Novi Sad</p>
+            <p><i>Napomena: Tretmani se rade ekskluzivno u ambijentu masažerke (nema terenskih dolazaka na vašu adresu).</i></p>
+            <p><strong>Radno vreme:</strong> Svakog dana 08:00 - 21:00h</p>
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2808.312984920231!2d19.814421!3d45.261231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b1037320a4d81%3A0x62a5cfbc935b0e5c!2sTeodora%20Kra%C4%8Duna%206%2C%20Novi%20Sad!5e0!3m2!1ssr!2srs!4v1700000000000!5m2!1ssr!2srs" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Masaža Anđa Novi Sad. Sva prava zadržana.</p>
+    </footer>
+
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const phone = "381611082003";
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            const message = `Zdravo Anđa, želeo/lela bih da zakažem tretman:%0A- *Usluga:* ${service}%0A- *Datum:* ${date}%0A- *Vreme:* ${time}%0A%0ADa li je termin slobodan?`;
+            
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
