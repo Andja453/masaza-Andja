@@ -591,13 +591,13 @@
                 if(parts.length === 3) formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}.`;
             }
 
-            const msg = `Zdravo Anđa, želeo/lela bih da zakažem masažu:\n\n• Usluga: ${service}\n• Datum: ${formattedDate}\n• Vreme: ${time}h\n\nDa li je ovaj termin slobodan?`;
+            const msg = `Zdravo Anđo, želeo/lela bih da zakažem masažu:\n\n• Usluga: ${service}\n• Datum: ${formattedDate}\n• Vreme: ${time}h\n\nDa li je ovaj termin slobodan?`;
             window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function orderVoucher() {
             const phone = "381611082003";
-            const msg = `Zdravo Anđa, želim da kupim POKLON VAUČER za masažu.\n\nMolim te pošalji mi podatke za uplatu na račun kako bismo dogovorili detalje!`;
+            const msg = `Zdravo Anđo, želim da kupim POKLON VAUČER za masažu.\n\nMolim te pošalji mi podatke za uplatu na račun kako bismo dogovorili detalje!`;
             window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
